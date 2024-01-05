@@ -24,10 +24,10 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
     const { contract: nftCollection } = useContract(NFT_COLLECTION_ADDRESS);
 
     const { data: directListing, isLoading: loadingDirectListing } =
-        useValidDirectListings(marketplace, {
-            tokenContract: NFT_COLLECTION_ADDRESS,
-            tokenId: nft.metadata.id,
-        });
+    useValidDirectListings(marketplace, {
+        tokenContract: NFT_COLLECTION_ADDRESS,
+        tokenId: nft.metadata.id,
+    });
 
     //Add these for auction section
     const [bidValue, setBidValue] = useState<string>();

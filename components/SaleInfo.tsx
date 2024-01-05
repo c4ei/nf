@@ -39,15 +39,19 @@ export default function SaleInfo({ nft }: Props) {
     async function checkAndProvideApproval() {
         const hasApproval = await nftCollection?.call(
             "isApprovedForAll",
-            nft.owner,
-            MARKETPLACE_ADDRESS
+            [
+                nft.owner,
+                MARKETPLACE_ADDRESS
+            ]
         );
 
         if (!hasApproval) {
             const txResult = await nftCollection?.call(
                 "setApprovalForAll",
-                MARKETPLACE_ADDRESS,
-                true
+                [
+                    MARKETPLACE_ADDRESS,
+                    true
+                ]
             );
 
             if (txResult) {
@@ -83,19 +87,19 @@ export default function SaleInfo({ nft }: Props) {
 
     //Add for Auction
     const { mutateAsync: createAuctionListing } =
-    useCreateAuctionListing(marketplace);
+        useCreateAuctionListing(marketplace);
 
     const { register: registerAuction, handleSubmit: handleSubmitAuction } =
-    useForm<AuctionFormData>({
-      defaultValues: {
-        nftContractAddress: NFT_COLLECTION_ADDRESS,
-        tokenId: nft.metadata.id,
-        startDate: new Date(),
-        endDate: new Date(),
-        floorPrice: "0",
-        buyoutPrice: "0",
-      },
-    });
+        useForm<AuctionFormData>({
+            defaultValues: {
+                nftContractAddress: NFT_COLLECTION_ADDRESS,
+                tokenId: nft.metadata.id,
+                startDate: new Date(),
+                endDate: new Date(),
+                floorPrice: "0",
+                buyoutPrice: "0",
+            },
+        });
 
     async function handleSubmissionAuction(data: AuctionFormData) {
         await checkAndProvideApproval();
@@ -154,11 +158,14 @@ export default function SaleInfo({ nft }: Props) {
                             onSuccess={(txResult) => {
                                 router.push(`/token/${NFT_COLLECTION_ADDRESS}/${nft.metadata.id}`);
                             }}
+                            onError={(e) => {
+                                console.log('error', e);
+                            }}
                         >Create Direct Listing</Web3Button>
                     </Stack>
                 </TabPanel>
                 <TabPanel>
-                <Stack spacing={8}>
+                    <Stack spacing={8}>
                         <Box>
                             <Text>Listing starts on:</Text>
                             <Input
