@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3014",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3014",
     "lint": "next lint",
     "export": "next export",
     "deploy": "next build && next export && npx thirdweb@latest upload out"
@@ -14,6 +14,7 @@
     "@chakra-ui/react": "^2.5.5",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
+    "@thirdweb-dev/chains": "^0.1.95",
     "@thirdweb-dev/react": "^4.2.1",
     "@thirdweb-dev/sdk": "^3.9.0",
     "ethers": "^5.7.2",

@@ -7,7 +7,7 @@ const Home: NextPage = () => {
     <Container maxW={"1200px"}>
       <Flex h={"80vh"} alignItems={"center"} justifyContent={"center"}>
         <Stack spacing={4} align={"center"}>
-          <Heading>Marketplace</Heading>
+          <Heading>Nft AAH</Heading>
           <Button
              as={NextLink} href='/buy'
           >Shop NFTs</Button>
